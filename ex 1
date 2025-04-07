@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int** MatrizSequencial(int linhas, int colunas) {
+  int** matriz = new int*[linhas];
+
+  matriz[0] = new int[linhas * colunas];
+
+  for(int i = 1; i < linhas; i++) {
+    matriz[i] = matriz[0] + i * colunas;
+  }
+
+
+  for(int i = 0; i < linhas; i++) {
+    for(int j = 0; j < colunas; j++) {
+      matriz[i][j] = i * colunas + j + 1;
+    }
+  }
+
+  return matriz;
+}
+
+int main() {
+  int linhas = 3, colunas = 4;
+
+  int** matriz = MatrizSequencial(linhas, colunas);
+
+  for(int i = 0; i < linhas; i++) {
+    for(int j = 0; j < colunas; j++) {
+      cout << matriz[i][j] << " ";
+    }
+    cout << endl;
+  }
+
+  delete[] matriz[0];
+  delete[] matriz;
+  
+  return 0;
+}
